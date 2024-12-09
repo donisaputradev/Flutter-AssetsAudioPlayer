@@ -168,7 +168,7 @@ class PlayerImplemExoPlayer(
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                         try {
-                            val key = drmConfiguration?.get("clearKey")?.toString()
+                            val key = drmConfiguration!!.get("clearKey").toString()
 
                             if (key != null) {
                                 val mediaItemDrmConfiguration: MediaItem.DrmConfiguration = MediaItem.DrmConfiguration.Builder(C.CLEARKEY_UUID)
