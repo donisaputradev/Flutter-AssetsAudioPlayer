@@ -166,14 +166,24 @@ class PlayerImplemExoPlayer(
                     val factory = ProgressiveMediaSource
                             .Factory(DefaultDataSource.Factory(context), DefaultExtractorsFactory())
 
-
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                        val key = drmConfiguration?.get("clearKey")?.toString()
+                        try {
+                            val key = drmConfiguration?.get("clearKey")?.toString()
 
-                        if (key != null) {
-                            val mediaItemDrmConfiguration: MediaItem.DrmConfiguration = MediaItem.DrmConfiguration.Builder(C.CLEARKEY_UUID).setKeySetId(key.toByteArray()).build()
-                            mediaItem = mediaItem.buildUpon().setDrmConfiguration(mediaItemDrmConfiguration).build()
-                            factory.setDrmSessionManagerProvider(DefaultDrmSessionManagerProvider())
+                            if (key != null) {
+                                val mediaItemDrmConfiguration: MediaItem.DrmConfiguration = MediaItem.DrmConfiguration.Builder(C.CLEARKEY_UUID)
+                                    .setKeySetId(key.toByteArray())
+                                    .build()
+                                mediaItem = mediaItem.buildUpon().setDrmConfiguration(mediaItemDrmConfiguration).build()
+                                factory.setDrmSessionManagerProvider(DefaultDrmSessionManagerProvider())
+                            } else {
+                                // Tangani kondisi jika 'key' null
+                                // Misalnya, log error atau tampilkan pesan kesalahan
+                                Log.e("DRM", "ClearKey tidak ditemukan dalam konfigurasi DRM.")
+                            }
+                        } catch (e: Exception) {
+                            // Tangani exception jika terjadi kesalahan saat memproses key atau DRM
+                            Log.e("DRM", "Terjadi kesalahan saat mengkonfigurasi DRM: ${e.message}")
                         }
 
                     }

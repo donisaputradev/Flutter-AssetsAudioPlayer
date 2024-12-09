@@ -78,7 +78,7 @@ class Player(
     private var isEnabledToChangeVolume: Boolean = true
 
     val isPlaying: Boolean
-        get() = mediaPlayer != null && mediaPlayer?.isPlaying
+    get() = mediaPlayer != null && (mediaPlayer?.isPlaying ?: false)
 
     private var lastRingerMode: Int? = null //see https://developer.android.com/reference/android/media/AudioManager.html?hl=fr#getRingerMode()
 
