@@ -191,12 +191,14 @@ class PlayerImplemExoPlayer(
                     return factory.createMediaSource(mediaItem)
                 }
                 else -> { //asset$
-                    val p = assetAudioPath?.replace(" ", "%20")
+                    val p = assetAudioPath?.replace(" ", "%20") ?: ""
+                    
                     val path = if (assetAudioPackage.isNullOrBlank()) {
                         flutterAssets.getAssetFilePathByName(p)
                     } else {
                         flutterAssets.getAssetFilePathByName(p, assetAudioPackage)
                     }
+
                     val assetDataSource = AssetDataSource(context)
                     assetDataSource.open(DataSpec(Uri.fromFile(File(path))))
 
