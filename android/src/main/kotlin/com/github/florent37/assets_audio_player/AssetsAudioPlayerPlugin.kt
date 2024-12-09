@@ -60,7 +60,7 @@ class AssetsAudioPlayerPlugin : FlutterPlugin, PluginRegistry.NewIntentListener,
                 context = flutterPluginBinding.applicationContext,
                 messenger = flutterPluginBinding.binaryMessenger
         )
-        assetsAudioPlayer!!.register();
+        assetsAudioPlayer?.register();
     }
 
     override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {

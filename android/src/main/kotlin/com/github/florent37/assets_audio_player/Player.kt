@@ -78,7 +78,7 @@ class Player(
     private var isEnabledToChangeVolume: Boolean = true
 
     val isPlaying: Boolean
-        get() = mediaPlayer != null && mediaPlayer!!.isPlaying
+        get() = mediaPlayer != null && mediaPlayer?.isPlaying
 
     private var lastRingerMode: Int? = null //see https://developer.android.com/reference/android/media/AudioManager.html?hl=fr#getRingerMode()
 
@@ -255,7 +255,7 @@ class Player(
             handler.removeCallbacks(updatePosition)
         }
         if (forwardHandler != null) {
-            forwardHandler!!.stop()
+            forwardHandler?.stop()
             forwardHandler = null
         }
         mediaPlayer = null
@@ -426,7 +426,7 @@ class Player(
     fun setPlaySpeed(playSpeed: Double) {
         if (playSpeed >= 0) { //android only take positive play speed
             if (forwardHandler != null) {
-                forwardHandler!!.stop()
+                forwardHandler?.stop()
                 forwardHandler = null
             }
             this.playSpeed = playSpeed
@@ -440,7 +440,7 @@ class Player(
     fun setPitch(pitch: Double) {
         if (pitch >= 0) { //android only take positive pitch
             if (forwardHandler != null) {
-                forwardHandler!!.stop()
+                forwardHandler?.stop()
                 forwardHandler = null
             }
             this.pitch = pitch
@@ -461,7 +461,7 @@ class Player(
         //onPlaying?.invoke(false)
 
         onForwardRewind?.invoke(speed)
-        forwardHandler!!.start(this, speed)
+        forwardHandler?.start(this, speed)
     }
 
     private var volumeBeforePhoneStateChanged: Double? = null
