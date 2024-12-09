@@ -1,6 +1,7 @@
 import 'assets_audio_player.dart';
 import 'player_group.dart';
 
+// ignore: constant_identifier_names
 enum AssetsAudioPlayerErrorType { Network, Player }
 
 class ErrorHandler {

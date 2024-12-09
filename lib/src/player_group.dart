@@ -1,6 +1,9 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:async';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -71,7 +74,7 @@ class AssetsAudioPlayerGroup {
   }) {
     // default action, can be overriden using player.onErrorDo = (error, player) { ACTION };
     onErrorDo = (group, errorHandler) {
-      print(errorHandler.error.message);
+      debugPrint(errorHandler.error.message);
       errorHandler.player.stop();
     };
   }
@@ -274,13 +277,13 @@ class AssetsAudioPlayerGroup {
   }
 
   void dispose() {
-    _subscriptions.forEach((element) {
+    for (var element in _subscriptions) {
       element.cancel();
-    });
+    }
     _subscriptions.clear();
-    players.forEach((element) {
+    for (var element in players) {
       element.dispose();
-    });
+    }
 
     _isPlaying.close();
   }

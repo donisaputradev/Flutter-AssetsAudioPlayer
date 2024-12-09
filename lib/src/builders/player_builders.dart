@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/widgets.dart';
 
@@ -41,65 +43,73 @@ class PlayerBuilder extends StatefulWidget {
   final _PlayingBuilderType builderType;
 
   const PlayerBuilder.isPlaying(
-      {Key? key, required this.player, required PlayingWidgetBuilder builder})
-      : builder = builder,
-        builderType = _PlayingBuilderType.isPlaying,
+      {Key? key,
+      required this.player,
+      required PlayingWidgetBuilder this.builder})
+      : builderType = _PlayingBuilderType.isPlaying,
         super(key: key);
 
   const PlayerBuilder.isBuffering(
-      {Key? key, required this.player, required PlayingWidgetBuilder builder})
-      : builder = builder,
-        builderType = _PlayingBuilderType.isBuffering,
+      {Key? key,
+      required this.player,
+      required PlayingWidgetBuilder this.builder})
+      : builderType = _PlayingBuilderType.isBuffering,
         super(key: key);
 
   const PlayerBuilder.loopMode(
-      {Key? key, required this.player, required LoopModeWidgetBuilder builder})
-      : builder = builder,
-        builderType = _PlayingBuilderType.loopMode,
+      {Key? key,
+      required this.player,
+      required LoopModeWidgetBuilder this.builder})
+      : builderType = _PlayingBuilderType.loopMode,
         super(key: key);
 
   const PlayerBuilder.realtimePlayingInfos(
-      {Key? key, required this.player, required RealtimeWidgetBuilder builder})
-      : builder = builder,
-        builderType = _PlayingBuilderType.realtimePlayingInfos,
+      {Key? key,
+      required this.player,
+      required RealtimeWidgetBuilder this.builder})
+      : builderType = _PlayingBuilderType.realtimePlayingInfos,
         super(key: key);
 
   const PlayerBuilder.volume(
-      {Key? key, required this.player, required VolumeWidgetBuilder builder})
-      : builder = builder,
-        builderType = _PlayingBuilderType.volume,
+      {Key? key,
+      required this.player,
+      required VolumeWidgetBuilder this.builder})
+      : builderType = _PlayingBuilderType.volume,
         super(key: key);
 
   const PlayerBuilder.playSpeed(
-      {Key? key, required this.player, required PlaySpeedWidgetBuilder builder})
-      : builder = builder,
-        builderType = _PlayingBuilderType.playSpeed,
+      {Key? key,
+      required this.player,
+      required PlaySpeedWidgetBuilder this.builder})
+      : builderType = _PlayingBuilderType.playSpeed,
         super(key: key);
 
   const PlayerBuilder.currentPosition(
-      {Key? key, required this.player, required PositionWidgetBuilder builder})
-      : builder = builder,
-        builderType = _PlayingBuilderType.currentPosition,
+      {Key? key,
+      required this.player,
+      required PositionWidgetBuilder this.builder})
+      : builderType = _PlayingBuilderType.currentPosition,
         super(key: key);
 
   const PlayerBuilder.forwardRewindSpeed(
       {Key? key,
       required this.player,
-      ForwardRewindSpeedWidgetBuilder? builder})
-      : builder = builder,
-        builderType = _PlayingBuilderType.forwardRewindSpeed,
+      ForwardRewindSpeedWidgetBuilder? this.builder})
+      : builderType = _PlayingBuilderType.forwardRewindSpeed,
         super(key: key);
 
   const PlayerBuilder.current(
-      {Key? key, required this.player, required CurrentWidgetBuilder builder})
-      : builder = builder,
-        builderType = _PlayingBuilderType.current,
+      {Key? key,
+      required this.player,
+      required CurrentWidgetBuilder this.builder})
+      : builderType = _PlayingBuilderType.current,
         super(key: key);
 
   const PlayerBuilder.playerState(
-      {Key? key, required this.player, required PlayerStateBuilder builder})
-      : builder = builder,
-        builderType = _PlayingBuilderType.playerState,
+      {Key? key,
+      required this.player,
+      required PlayerStateBuilder this.builder})
+      : builderType = _PlayingBuilderType.playerState,
         super(key: key);
 
   @override
@@ -126,7 +136,7 @@ class _PlayerBuilderState extends State<PlayerBuilder> {
             if (snap.hasData) {
               return widget.builder(context, snap.data)!;
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           },
         );
@@ -138,7 +148,7 @@ class _PlayerBuilderState extends State<PlayerBuilder> {
             if (snap.hasData) {
               return widget.builder(context, snap.data)!;
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           },
         );
@@ -150,7 +160,7 @@ class _PlayerBuilderState extends State<PlayerBuilder> {
             if (snap.hasData) {
               return widget.builder(context, snap.data)!;
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           },
         );
@@ -158,11 +168,11 @@ class _PlayerBuilderState extends State<PlayerBuilder> {
         return StreamBuilder(
           stream: widget.player.currentPosition,
           initialData: Duration.zero,
-            builder: (context, snap) {
+          builder: (context, snap) {
             if (snap.hasData) {
               return widget.builder(context, snap.data)!;
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           },
         );
@@ -170,22 +180,22 @@ class _PlayerBuilderState extends State<PlayerBuilder> {
         return StreamBuilder(
           stream: widget.player.playSpeed,
           initialData: AssetsAudioPlayer.defaultPlaySpeed,
-           builder: (context, snap) {
+          builder: (context, snap) {
             if (snap.hasData) {
               return widget.builder(context, snap.data)!;
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           },
         );
       case _PlayingBuilderType.forwardRewindSpeed:
         return StreamBuilder(
           stream: widget.player.forwardRewindSpeed,
-           builder: (context, snap) {
+          builder: (context, snap) {
             if (snap.hasData) {
               return widget.builder(context, snap.data)!;
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           },
         );
@@ -196,18 +206,18 @@ class _PlayerBuilderState extends State<PlayerBuilder> {
             if (snap.hasData) {
               return widget.builder(context, snap.data)!;
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           },
         );
       case _PlayingBuilderType.realtimePlayingInfos:
         return StreamBuilder(
           stream: widget.player.realtimePlayingInfos,
-           builder: (context, snap) {
+          builder: (context, snap) {
             if (snap.hasData) {
               return widget.builder(context, snap.data)!;
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           },
         );
@@ -215,11 +225,11 @@ class _PlayerBuilderState extends State<PlayerBuilder> {
         return StreamBuilder(
           stream: widget.player.playerState,
           initialData: PlayerState.stop,
-            builder: (context, snap) {
+          builder: (context, snap) {
             if (snap.hasData) {
               return widget.builder(context, snap.data)!;
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           },
         );
@@ -233,9 +243,10 @@ class PlayerGroupBuilder extends StatefulWidget {
   final _PlayingBuilderType builderType;
 
   const PlayerGroupBuilder.isPlaying(
-      {Key? key, required this.player, required PlayingWidgetBuilder builder})
-      : builder = builder,
-        builderType = _PlayingBuilderType.isPlaying,
+      {Key? key,
+      required this.player,
+      required PlayingWidgetBuilder this.builder})
+      : builderType = _PlayingBuilderType.isPlaying,
         super(key: key);
 
   @override
@@ -256,6 +267,6 @@ class _PlayerBuilderGroupState extends State<PlayerGroupBuilder> {
         );
       default: /* do nothing */
     }
-    return SizedBox();
+    return const SizedBox();
   }
 }
